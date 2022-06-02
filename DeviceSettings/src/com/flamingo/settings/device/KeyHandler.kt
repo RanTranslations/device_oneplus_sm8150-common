@@ -107,7 +107,7 @@ class KeyHandler(private val context: Context) : DeviceKeyHandler {
     override fun handleKeyEvent(event: KeyEvent): KeyEvent? {
         // Handle AlertSlider KeyEvent
         if (event.action == KeyEvent.ACTION_DOWN) {
-            var mode: String?
+            val mode: String
             when (event.scanCode) {
                 POSITION_BOTTOM ->
                     mode = performSliderAction(ALERTSLIDER_MODE_POSITION_BOTTOM, MODE_NORMAL)
@@ -115,23 +115,23 @@ class KeyHandler(private val context: Context) : DeviceKeyHandler {
                     mode = performSliderAction(ALERTSLIDER_MODE_POSITION_MIDDLE, MODE_VIBRATE)
                 POSITION_TOP ->
                     mode = performSliderAction(ALERTSLIDER_MODE_POSITION_TOP, MODE_SILENT)
-                else -> return null
+                else -> return event
             }
             sendSliderBroadcast(event.scanCode, mode)
-            return event
+            return null
         }
 
         // Return early so that KeyEvent can be processed sooner
         if (event.action != KeyEvent.ACTION_UP) {
-            return null
+            return event
         }
 
-        val key: String = settingMap[event.scanCode] ?: return null
+        val key: String = settingMap[event.scanCode] ?: return event
         if (key == Utils.getResName(SINGLE_TAP_GESTURE)) {
             if (getKeyguardManagerService()?.isDeviceLocked() == false) {
                 // Wakeup the device if not locked
                 wakeUp()
-                return event
+                return null
             }
         }
         // Handle gestures
@@ -139,7 +139,7 @@ class KeyHandler(private val context: Context) : DeviceKeyHandler {
         if (action > 0 && !handler.hasMessages(GESTURE_REQUEST)) {
             handler.sendMessage(handler.obtainMessage(GESTURE_REQUEST, action, 0))
         }
-        return event
+        return null
     }
 
     private fun performSliderAction(key: String, defMode: String): String {
