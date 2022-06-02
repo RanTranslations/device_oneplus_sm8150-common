@@ -15,41 +15,35 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package co.aospa.settings.DisplayMode;
+package co.aospa.settings.DisplayMode
 
-import android.content.Intent;
-import android.service.quicksettings.TileService;
+import android.content.Intent
+import android.service.quicksettings.TileService
 
-public class PanelModeTileService extends TileService {
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+class PanelModeTileService: TileService() {
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
-    @Override
-    public void onTileAdded() {
-        super.onTileAdded();
+    override fun onTileAdded() {
+        super.onTileAdded()
     }
 
-    @Override
-    public void onTileRemoved() {
-        super.onTileRemoved();
+    override fun onTileRemoved() {
+        super.onTileRemoved()
     }
 
-    @Override
-    public void onStartListening() {
-        super.onStartListening();
+    override fun onStartListening() {
+        super.onStartListening()
     }
 
-    @Override
-    public void onStopListening() {
+    override fun onStopListening() {
         super.onStopListening();
     }
 
-    @Override
-    public void onClick() {
+    override fun onClick() {
         super.onClick();
-        Intent panelModes = new Intent(this, PanelSettingsActivity.class);
+        val panelModes: Intent = Intent(this, PanelSettingsActivity::class.java);
         panelModes.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivityAndCollapse(panelModes);
     }

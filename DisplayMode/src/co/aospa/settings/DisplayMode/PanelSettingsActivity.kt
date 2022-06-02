@@ -15,19 +15,18 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package co.aospa.settings.DisplayMode;
+package co.aospa.settings.DisplayMode
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.app.Activity
+import android.os.Bundle
 
-public class PanelSettingsActivity extends Activity {
+class PanelSettingsActivity: Activity() {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    override protected fun onCreate(savedInstanceState: Bundle) {
+        super.onCreate(savedInstanceState)
 
         getFragmentManager().beginTransaction()
-                .add(android.R.id.content, new PanelSettings())
-                .commit();
+                .add(android.R.id.content, PanelSettings())
+                .commit()
     }
 }

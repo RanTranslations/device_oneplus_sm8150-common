@@ -15,21 +15,20 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>.
 *
 */
-package co.aospa.settings.DisplayMode;
+package co.aospa.settings.DisplayMode
 
-import android.os.Bundle;
+import android.os.Bundle
 
-import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
-import com.android.settingslib.collapsingtoolbar.R;
+import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity
+import com.android.settingslib.collapsingtoolbar.R
 
-public class DeviceSettingsActivity extends CollapsingToolbarBaseActivity {
+class DeviceSettingsActivity: CollapsingToolbarBaseActivity() {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    override protected fun onCreate(savedInstanceState: Bundle) {
         super.onCreate(savedInstanceState);
 
         getFragmentManager().beginTransaction()
-                .add(R.id.content_frame, new DeviceSettings())
+                .add(R.id.content_frame, DeviceSettings())
                 .commit();
     }
 }
