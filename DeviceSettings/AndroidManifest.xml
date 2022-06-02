@@ -73,8 +73,5 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".ClientPackageObserverService"
-            android:exported="false" />
     </application>
 </manifest>
